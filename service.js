@@ -58,3 +58,19 @@ var http = require('http');
             callback(response);    
         });
     };
+    
+   ApacheSolrService.prototype.deleteByQuery = function(query, callback) {
+      var userQuery = (query)? query : '*:*';
+      var deletePath = 'update?stream.body=<delete><query>' +userQuery+ '</query></delete>&commit=true&wt=json';
+      console.log(deletePath);
+      this.makeRequest(deletePath, function(err, response){
+           callback();
+      });
+   };
+   
+   ApacheSolrService.prototype.commitQuery = function(callback) {
+      var commitPath = 'update?stream.body=<commit/>&wt=json';
+      http.makeRequest(commitPath, function(err, response){
+         callback(response);
+      });
+   };
