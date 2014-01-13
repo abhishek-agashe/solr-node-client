@@ -1,2 +1,2 @@
-solr-node-client
+solr-node-client.
 ================
